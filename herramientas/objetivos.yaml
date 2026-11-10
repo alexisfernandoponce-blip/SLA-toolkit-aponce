@@ -12,6 +12,7 @@ contrato:
   demarcacion: "Puerto LAN del CPE - Planta Vicuña"
   periodo: "Septiembre 2026"
   periodo_minutos: 43200
+  registro_eventos_completo: true
 
   cargo_mensual: 1200000
   moneda: "CLP"

@@ -1,0 +1,119 @@
+
+# SLA Toolkit Pro
+# Configuración contractual completa
+# Caso: Agrícola Valle de Elqui SpA
+# Período: septiembre de 2026
+
+contrato:
+  cliente: "Agrícola Valle de Elqui SpA"
+  proveedor: "NorteNet Telecomunicaciones"
+  servicio: "Internet dedicado simétrico de 200 Mbps"
+  capacidad_mbps: 200
+  demarcacion: "Puerto LAN del CPE - Planta Vicuña"
+  periodo: "Septiembre 2026"
+  periodo_minutos: 43200
+  registro_eventos_completo: true
+
+  cargo_mensual: 1200000
+  moneda: "CLP"
+  cobertura_minima: 90
+  tope_credito: 50
+
+  exclusiones:
+    mantenimiento_aviso_horas: 72
+    mantenimiento_maximo_minutos: 240
+    fuerza_mayor_declarada: true
+    fallas_cliente: true
+    tiempo_excluido_como_disponible: true
+
+  tramos_disponibilidad:
+    - desde: 99.5
+      hasta: 99.9
+      credito: 10
+    - desde: 99.0
+      hasta: 99.5
+      credito: 25
+    - desde: 0
+      hasta: 99.0
+      credito: 50
+
+  infraestructura:
+    cpe: 99.95
+    fibra: 99.80
+    pe: 99.99
+    backbone: 99.99
+    radio: 99.50
+
+metricas:
+
+  disponibilidad:
+    objetivo: 99.9
+    operador: ">="
+    unidad: "%"
+    estadistico: "disponibilidad"
+    periodo_minutos: 43200
+    clausula: "3.1"
+
+  latencia:
+    objetivo: 30
+    operador: "<="
+    unidad: "ms"
+    estadistico: "promedio"
+    credito: 5
+    herramienta: "ICMP"
+    frecuencia_segundos: 60
+    punto_medicion: "CPE LAN a servidor La Serena"
+    clausula: "3.2"
+
+  jitter:
+    objetivo: 10
+    operador: "<="
+    unidad: "ms"
+    estadistico: "promedio_ponderado"
+    credito: 5
+    dias_periodo: 30
+    herramienta: "TWAMP"
+    norma: "RFC 3393"
+    punto_medicion: "Demarcación del cliente"
+    clausula: "3.3"
+
+  perdida:
+    objetivo: 0.5
+    operador: "<="
+    unidad: "%"
+    estadistico: "promedio"
+    credito: 5
+    dias_periodo: 30
+    herramienta: "TWAMP"
+    punto_medicion: "Demarcación del cliente"
+    clausula: "3.4"
+
+  throughput:
+    objetivo: 180
+    operador: ">="
+    unidad: "Mbps"
+    estadistico: "promedio"
+    credito: 5
+    pruebas_minimas: 4
+    herramienta: "iperf3 TCP"
+    norma: "RFC 6349"
+    punto_medicion: "Puerto LAN del CPE"
+    clausula: "3.5"
+
+  respuesta:
+    objetivo: 60
+    operador: "<="
+    unidad: "min"
+    estadistico: "maximo"
+    credito: 5
+    cumplimiento_incidentes: 100
+    clausula: "4.1"
+
+  mttr:
+    objetivo: 4
+    operador: "<="
+    unidad: "h"
+    estadistico: "maximo"
+    credito: 0
+    solo_incidentes_proveedor: true
+    clausula: "4.2"
